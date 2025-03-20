@@ -1,8 +1,8 @@
-import * as React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
+import * as React from 'react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
 const Copyright = () => {
   return (
@@ -10,13 +10,13 @@ const Copyright = () => {
       variant="body2"
       align="center"
       sx={{
-        color: "text.secondary",
+        color: 'text.secondary',
       }}
     >
-      {"Copyright © "}
+      {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
         Demo
-      </Link>{" "}
+      </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
   );
