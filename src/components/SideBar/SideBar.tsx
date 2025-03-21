@@ -1,13 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { SideBarStyle } from './SideBar.style';
+import { useLocation, NavLink } from 'react-router';
+import { SideBarStyle, SideBarMenuItem, SideBarMenuItemActive } from './SideBar.style';
+import { AppRoutes } from '../../config/Routes';
 
 export const SideBar: React.FC = () => {
+  const location = useLocation();
+  const sidebarRoutes = AppRoutes.filter((e) => e.sidebar);
   return (
     <div css={SideBarStyle}>
-      <div>Menu 1</div>
-      <div>Menu 2</div>
-      <div>Menu 3</div>
+      {sidebarRoutes.map((e) => (
+        <NavLink
+          key={e.path}
+          to={e.path}
+          css={e.path !== location.pathname ? SideBarMenuItem : [SideBarMenuItem, SideBarMenuItemActive]}
+        >
+          {e.path}
+        </NavLink>
+      ))}
     </div>
   );
 };

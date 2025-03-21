@@ -18,19 +18,23 @@ export const Router = createBrowserRouter([
 export interface AppRouteItem {
   path: string;
   element: React.ReactNode;
+  sidebar: boolean;
 }
 
 export const AppRoutes: AppRouteItem[] = [
   {
     path: '/',
     element: <Color />,
+    sidebar: false,
   },
   {
     path: '/color',
     element: <Color />,
+    sidebar: true,
   },
   {
     path: '/dummy',
     element: <Dummy />,
+    sidebar: true,
   },
 ];

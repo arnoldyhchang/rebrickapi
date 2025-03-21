@@ -9,4 +9,5 @@ export const TopBarStyle = css`
   height: 40px;
   background-color: ${theme.palette.primary.light};
   border-bottom: 2px solid #333859;
+  padding: 10px;
 `;
