@@ -14,11 +14,11 @@ const App = () => {
     <React.Fragment>
       <TopBar />
       <div css={AppContentStyle} data-testid="demo">
-        <SideBar />
         <BrowserRouter>
+          <SideBar />
           <Routes>
             {AppRoutes.map((e) => {
-              return <Route path={e.path} element={e.element} />;
+              return <Route path={e.path} key={e.path} element={e.element} />;
             })}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
