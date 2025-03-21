@@ -6,10 +6,21 @@ export const theme = createTheme({
   cssVariables: true,
   palette: {
     primary: {
-      main: '#556cd6',
+      main: '#037cbf',
+      dark: '#050539',
+      light: '#00A2E3',
     },
     secondary: {
-      main: '#19857b',
+      main: '#d9d9dc',
+      dark: '#4d556b',
+    },
+    background: {
+      default: '#d9d9dc',
+      paper: '#edeeef', // page content background
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#ffffff',
     },
     error: {
       main: red.A400,
