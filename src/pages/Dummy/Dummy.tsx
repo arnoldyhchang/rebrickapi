@@ -34,7 +34,3 @@ export const Dummy = () => {
     </Container>
   );
 };
-
-export const Dummy2 = () => {
-  return <div>Placeholder</div>;
-};
