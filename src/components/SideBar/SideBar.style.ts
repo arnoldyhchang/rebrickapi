@@ -10,6 +10,12 @@ export const SideBarStyle = css`
   border-right: 2px solid #333859;
 `;
 
+export const SideBarContainerStyle = css`
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+`;
+
 export const SideBarMenuItem = css`
   margin: 10px;
   color: ${theme.palette.grey[500]};
