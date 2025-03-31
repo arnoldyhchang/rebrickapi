@@ -2,18 +2,18 @@
 import React, { useState } from 'react';
 import { Stack, IconButton, Typography } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import { useFetch } from '../../services/hooks/useFetch';
+import { useAxios } from '../../services/hooks/useAxios';
 import { envConfig } from '../../services/envConfg';
 import { PagedDataType, IColorEntryResponse } from '../../services/types';
 import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
 import { PageContentStyle } from '../../styles/global.style';
-import { ColorRowStyle, ColorBoxStyle } from './Color.style';
+import { ColorRowStyle, ColorBoxStyle } from './ColorByAxios.style';
 
-export const Color = () => {
+export const ColorByAxios = () => {
   const pageSize = 20;
   const [page, setPage] = useState(1);
   const url = envConfig.apiUrl + API_URL_MAP.urls[EApiUrlKey.COLORS]({ page, pageSize });
-  const { data, loading, error } = useFetch<PagedDataType<IColorEntryResponse>>({ url });
+  const { data, loading, error } = useAxios<PagedDataType<IColorEntryResponse>>({ url });
   const totalPages = data?.count ? Math.ceil(data.count / pageSize) : 0;
 
   if (loading) return <div>Loading...</div>;

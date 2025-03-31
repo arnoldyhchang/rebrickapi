@@ -17,8 +17,8 @@ export default [
   {
     /* set rule to ignore css prop as ESLINT rule is not smart enough for emotion */
     rules: {
-      "react/no-unknown-property": ["error", { "ignore": ["css"] }],
-      "@typescript-eslint/no-empty-object-type": "off",
+      'react/no-unknown-property': ['error', { ignore: ['css'] }],
+      '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
   pluginJs.configs.recommended,
