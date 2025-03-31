@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createBrowserRouter } from 'react-router';
 import { Color } from '../pages/Color';
+import { ColorByAxios } from '../pages/ColorByAxios';
 import { Dummy } from '../pages/Dummy';
 
 // for data mode routing
@@ -30,6 +31,11 @@ export const AppRoutes: AppRouteItem[] = [
   {
     path: '/color',
     element: <Color />,
+    sidebar: true,
+  },
+  {
+    path: '/colorByAxios',
+    element: <ColorByAxios />,
     sidebar: true,
   },
   {
