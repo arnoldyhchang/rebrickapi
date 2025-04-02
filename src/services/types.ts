@@ -1,3 +1,10 @@
+export interface ServerError {
+  code: string;
+  message: string;
+  status: number;
+  apiName: string;
+}
+
 export interface IPagination {
   count: number;
   next: string;

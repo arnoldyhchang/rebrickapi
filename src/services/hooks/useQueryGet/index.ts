@@ -1,0 +1,1 @@
+export { useQueryGet } from './useQueryGet';

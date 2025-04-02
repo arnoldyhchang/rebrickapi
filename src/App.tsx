@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // data mode
 // import { RouterProvider } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router';
@@ -9,9 +10,12 @@ import { SideBar } from './components/SideBar';
 import { AppContentStyle } from './App.style';
 import { PageNotFound } from './pages/PageNotFound';
 
+// create a client
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <TopBar />
       <div css={AppContentStyle} data-testid="demo">
         <BrowserRouter>
@@ -24,7 +28,7 @@ const App = () => {
           </Routes>
         </BrowserRouter>
       </div>
-    </React.Fragment>
+    </QueryClientProvider>
   );
 };
 
