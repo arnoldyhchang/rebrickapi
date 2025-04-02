@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createBrowserRouter } from 'react-router';
 import { Color } from '../pages/Color';
 import { ColorByAxios } from '../pages/ColorByAxios';
+import { ColorByQuery } from '../pages/ColorByQuery';
 import { Dummy } from '../pages/Dummy';
 
 // for data mode routing
@@ -36,6 +37,11 @@ export const AppRoutes: AppRouteItem[] = [
   {
     path: '/colorByAxios',
     element: <ColorByAxios />,
+    sidebar: true,
+  },
+  {
+    path: '/colorByQuery',
+    element: <ColorByQuery />,
     sidebar: true,
   },
   {
