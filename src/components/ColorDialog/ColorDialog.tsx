@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import {
   Box,
@@ -16,6 +17,7 @@ import { useQueryGet } from '../../services/hooks/useQueryGet';
 import { envConfig } from '../../services/envConfg';
 import { IColorDetailsResponse } from '../../services/types';
 import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
+import { ColorDialogBoxStyle, ColorDialogContentStyle } from './ColorDialog.style';
 
 interface IProps {
   isOpen: boolean;
@@ -33,12 +35,9 @@ export const ColorDialog = ({ isOpen, colorId, onCloseClick }: IProps) => {
         <Box display="flex" justifyContent="space-between" alignItems="Center">
           <Box display="flex" flexDirection={'row'} gap={1}>
             <Box
+              css={ColorDialogBoxStyle}
               sx={{
-                width: 32,
-                height: 32,
-                borderRadius: 1,
                 backgroundColor: '#' + data?.rgb,
-                border: '1px solid #ccc',
               }}
             />
             <Typography variant="h5">
@@ -50,7 +49,7 @@ export const ColorDialog = ({ isOpen, colorId, onCloseClick }: IProps) => {
           </IconButton>
         </Box>
       </DialogTitle>
-      <DialogContent color="primary" sx={{ minWidth: 600 }}>
+      <DialogContent color="primary" css={ColorDialogContentStyle}>
         {isLoading && <CircularProgress color={'primary'} size={30} />}
         {error && (
           <div>
