@@ -7,7 +7,7 @@ import { envConfig } from '../../services/envConfg';
 import { PagedDataType, IColorEntryResponse } from '../../services/types';
 import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
 import { PageContentStyle } from '../../styles/global.style';
-import { ColorDialog } from '../ColorDialog';
+import { ColorDialog } from '../../components/ColorDialog';
 import { ColorRowStyle, ColorBoxStyle } from './ColorByQuery.style';
 
 export const ColorByQuery = () => {
