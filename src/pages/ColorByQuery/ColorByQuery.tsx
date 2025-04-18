@@ -7,11 +7,14 @@ import { envConfig } from '../../services/envConfg';
 import { PagedDataType, IColorEntryResponse } from '../../services/types';
 import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
 import { PageContentStyle } from '../../styles/global.style';
+import { ColorDialog } from '../ColorDialog';
 import { ColorRowStyle, ColorBoxStyle } from './ColorByQuery.style';
 
 export const ColorByQuery = () => {
   const pageSize = 20;
   const [page, setPage] = useState(1);
+  const [colorId, setColorId] = useState(-1);
+  const [isOpen, setIsOpen] = useState(false);
   const url = envConfig.apiUrl + API_URL_MAP.urls[EApiUrlKey.COLORS]({ page, pageSize });
   const { data, isLoading, error } = useQueryGet<PagedDataType<IColorEntryResponse>>({ url });
   const totalPages = data?.count ? Math.ceil(data.count / pageSize) : 0;
@@ -33,9 +36,19 @@ export const ColorByQuery = () => {
     setPage(page + 1);
   };
 
+  const handleOnColorClick = (ev: React.SyntheticEvent<HTMLDivElement>) => {
+    const colorIdStr = ev.currentTarget.getAttribute('data-color-id');
+    setColorId(colorIdStr ? Number(colorIdStr) : 0);
+    setIsOpen(true);
+  };
+
+  const handleDialogCloseClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div css={PageContentStyle}>
-      <Stack direction="row" alignItems="center">
+      <Stack direction="row" alignItems="center" spacing={4}>
         <IconButton onClick={handleOnClickPrevious} disabled={data?.previous === null}>
           <ArrowBackIos />
         </IconButton>
@@ -47,13 +60,14 @@ export const ColorByQuery = () => {
         </IconButton>
       </Stack>
       {data?.results.map((e, index) => (
-        <div key={index} css={ColorRowStyle}>
+        <div key={index} data-color-id={e.id} css={ColorRowStyle} onClick={handleOnColorClick}>
           <p css={ColorBoxStyle} style={{ background: `#${e.rgb}` }}></p>
           <p>
             id: {e.id}, name: {e.name}, color: {e.rgb}
           </p>
         </div>
       ))}
+      <ColorDialog isOpen={isOpen} colorId={colorId} onCloseClick={handleDialogCloseClick} />
     </div>
   );
 };
