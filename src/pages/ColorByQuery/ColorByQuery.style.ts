@@ -10,6 +10,10 @@ export const ColorRowStyle = css`
   flex-direction: row;
   align-items: center;
   margin: 10px;
+  &:hover {
+    cursor: pointer;
+    background-color: ${theme.palette.grey[300]};
+  }
 `;
 
 export const ColorBoxStyle = css`
