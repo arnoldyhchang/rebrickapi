@@ -26,4 +26,18 @@ export const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiInputBase-input': {
+            color: 'blue', // 👈 input text color
+          },
+          '& .MuiInputLabel-root': {
+            color: 'gray', // 👈 label color
+          },
+        },
+      },
+    },
+  },
 });

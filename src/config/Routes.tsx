@@ -4,6 +4,7 @@ import { Color } from '../pages/Color';
 import { ColorByAxios } from '../pages/ColorByAxios';
 import { ColorByQuery } from '../pages/ColorByQuery';
 import { Dummy } from '../pages/Dummy';
+import { UserAccount } from '../pages/UserAccount';
 
 // for data mode routing
 export const Router = createBrowserRouter([
@@ -47,6 +48,11 @@ export const AppRoutes: AppRouteItem[] = [
   {
     path: '/dummy',
     element: <Dummy />,
+    sidebar: true,
+  },
+  {
+    path: '/user-account',
+    element: <UserAccount />,
     sidebar: true,
   },
 ];

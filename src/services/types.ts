@@ -3,6 +3,12 @@ export interface ServerError {
   message: string;
   status: number;
   apiName: string;
+  detail: string | undefined;
+}
+
+// type the error shape from rebrickable API
+export interface ErrorResponse {
+  detail: string;
 }
 
 export interface IPagination {
@@ -34,4 +40,13 @@ export interface IColorDetailsResponse extends IColorEntry {
   external_ids: {
     [externalName: string]: IExternalColorDetails;
   };
+}
+
+export interface IUserTokenPayload {
+  username: string; // email or username
+  password: string;
+}
+
+export interface IUserTokenResponse {
+  user_token: string;
 }

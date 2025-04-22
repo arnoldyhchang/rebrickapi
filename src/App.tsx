@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { RouterProvider } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AppRoutes } from './config/Routes';
+import { AuthContextProvider } from './context/AuthContext';
 import { TopBar } from './components/TopBar';
 import { SideBar } from './components/SideBar';
 import { AppContentStyle } from './App.style';
@@ -19,13 +20,15 @@ const App = () => {
       <TopBar />
       <div css={AppContentStyle} data-testid="demo">
         <BrowserRouter>
-          <SideBar />
-          <Routes>
-            {AppRoutes.map((e) => {
-              return <Route path={e.path} key={e.path} element={e.element} />;
-            })}
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+          <AuthContextProvider>
+            <SideBar />
+            <Routes>
+              {AppRoutes.map((e) => {
+                return <Route path={e.path} key={e.path} element={e.element} />;
+              })}
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </AuthContextProvider>
         </BrowserRouter>
       </div>
     </QueryClientProvider>
