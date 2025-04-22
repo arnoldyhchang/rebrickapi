@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { ServerError } from '../../types';
+import { envConfig } from '../../envConfg';
+import { ErrorResponse, ServerError } from '../../types';
 
 interface IProps {
   url: string;
@@ -9,15 +10,20 @@ interface IProps {
 
 const fetchData = async <TData>(url: string): Promise<TData> => {
   try {
-    const response: AxiosResponse<TData> = await axios.get<TData>(url);
+    const response: AxiosResponse<TData> = await axios.get<TData>(url, {
+      headers: {
+        Authorization: `key ${envConfig.apiKey}`,
+      },
+    });
     return response.data;
   } catch (error) {
-    const axiosError = error as AxiosError;
+    const axiosError = error as AxiosError<ErrorResponse>;
     // map to app error type
     const appError: ServerError = {
       message: axiosError.message || 'unknown error while fetching data',
       status: axiosError.status || 0,
       code: axiosError.code || 'UNKNOWN',
+      detail: axiosError.response?.data?.detail,
       apiName: 'rebrickable API',
     };
     throw appError;
