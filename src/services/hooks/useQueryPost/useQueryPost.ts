@@ -35,7 +35,6 @@ export const useQueryPost = <TResponse, TPayload>({
   };
 
   const handleSuccess = (data: TResponse) => {
-    console.log('*** handleSuccess ***', data);
     if (onSuccess) {
       onSuccess(data);
     }
