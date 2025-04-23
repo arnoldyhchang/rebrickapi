@@ -50,3 +50,28 @@ export interface IUserTokenPayload {
 export interface IUserTokenResponse {
   user_token: string;
 }
+
+export interface IUserRewards {
+  points: number;
+  level: number;
+  badges: number[];
+}
+
+export interface IUserProfileResponse {
+  user_id: number;
+  username: string;
+  email: string;
+  last_activity: string;
+  last_ip: string;
+  location: string;
+  rewards: IUserRewards;
+  avatar_img: string;
+}
+
+export interface IUserBadge {
+  id: number;
+  code: string;
+  level: number;
+  name: string;
+  descr: string;
+}

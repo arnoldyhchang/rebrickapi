@@ -1,6 +1,7 @@
 const tokenStr = 'userToken';
 
-export const getToken = () => localStorage.getItem(tokenStr);
+// map local storge null to be undefined to work better with useContext
+export const getToken = () => localStorage.getItem(tokenStr) ?? undefined;
 
 export const removeToken = () => localStorage.removeItem(tokenStr);
 
