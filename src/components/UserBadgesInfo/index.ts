@@ -1,0 +1,1 @@
+export { UserBadgesInfo } from './UserBadgesInfo';

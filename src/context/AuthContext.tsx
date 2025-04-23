@@ -2,8 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getToken, removeToken, setToken } from '../services/storage/userToken';
 
 interface IAuthContext {
-  userToken: string | null;
-  updateUserToken: (token: string | null) => void;
+  userToken: string | undefined;
+  updateUserToken: (token: string | undefined) => void;
 }
 
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
@@ -13,19 +13,19 @@ interface IProps {
 }
 
 export const AuthContextProvider = ({ children }: IProps) => {
-  const [userToken, setUserToken] = useState<string | null>(null);
+  const [userToken, setUserToken] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setUserToken(getToken());
   }, []);
 
-  const updateUserToken = (token: string | null) => {
+  const updateUserToken = (token: string | undefined) => {
     if (token) {
       setToken(token);
       setUserToken(token);
     } else {
       removeToken();
-      setUserToken(null);
+      setUserToken(undefined);
     }
   };
 
