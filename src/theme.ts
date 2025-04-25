@@ -46,5 +46,24 @@ export const theme = createTheme({
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        // Applies to all variants (standard, outlined, filled)
+        root: {
+          color: '#555', // default label color
+          fontSize: '1rem', // default font size
+          '&.Mui-focused': {
+            color: '#1976d2', // color when input is focused
+          },
+          '&.Mui-error': {
+            color: '#d32f2f', // color when in error state
+          },
+        },
+        // If you want variant-specific tweaks:
+        // outlined: { /* styles for outlined variant */ },
+        // filled:   { /* styles for filled variant   */ },
+        // standard:{ /* styles for standard variant*/ },
+      },
+    },
   },
 });

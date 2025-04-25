@@ -6,6 +6,7 @@ import { ErrorResponse, ServerError } from '../../types';
 interface IProps {
   url: string;
   enabled?: boolean;
+  refetchOnMount?: boolean;
 }
 
 const fetchData = async <TData>(url: string): Promise<TData> => {
@@ -30,12 +31,13 @@ const fetchData = async <TData>(url: string): Promise<TData> => {
   }
 };
 
-export const useQueryGet = <TData>({ url, enabled = true }: IProps) => {
+export const useQueryGet = <TData>({ url, enabled = true, refetchOnMount = true }: IProps) => {
   return useQuery<TData, ServerError>({
     queryKey: [url],
     queryFn: () => fetchData<TData>(url),
     retry: 2, // retries fetching data twice before failing,
     staleTime: 5000, // prevent unnecessary refetching for five seconds
-    enabled: enabled,
+    enabled,
+    refetchOnMount,
   });
 };

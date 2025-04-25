@@ -75,3 +75,13 @@ export interface IUserBadge {
   name: string;
   descr: string;
 }
+
+export interface ILegoTheme {
+  id: number;
+  parent_id: number | null;
+  name: string;
+}
+
+export interface ILegoThemesResponse {
+  results: ILegoTheme[];
+}
