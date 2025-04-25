@@ -4,6 +4,7 @@ export enum EApiUrlKey {
   USER_TOKEN_POST = 'userTokenPost',
   USER_PROFILE = 'userProfile',
   USER_BADGE = 'userBadge',
+  LEGO_THEMES = 'legoThemes',
 }
 
 export type ApiQueryParams = {
@@ -28,5 +29,6 @@ export const API_URL_MAP: IApiUrlMap = {
     userTokenPost: () => `/users/_token/`,
     userProfile: ({ userToken }) => `/users/${userToken}/profile/`,
     userBadge: ({ badgeId }) => `/users/badges/${badgeId}/`,
+    legoThemes: ({ page, pageSize }) => `/lego/themes/?page=${page}&page_size=${pageSize}`,
   },
 };

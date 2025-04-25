@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 // data mode
 // import { RouterProvider } from 'react-router';
 import { BrowserRouter, Routes, Route } from 'react-router';
@@ -31,6 +32,7 @@ const App = () => {
           </AuthContextProvider>
         </BrowserRouter>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

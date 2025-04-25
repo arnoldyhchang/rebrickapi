@@ -5,6 +5,7 @@ import { ColorByAxios } from '../pages/ColorByAxios';
 import { ColorByQuery } from '../pages/ColorByQuery';
 import { Dummy } from '../pages/Dummy';
 import { UserAccount } from '../pages/UserAccount';
+import { LegoSets } from '../pages/LegoSets';
 
 // for data mode routing
 export const Router = createBrowserRouter([
@@ -53,6 +54,11 @@ export const AppRoutes: AppRouteItem[] = [
   {
     path: '/user-account',
     element: <UserAccount />,
+    sidebar: true,
+  },
+  {
+    path: '/lego-sets',
+    element: <LegoSets />,
     sidebar: true,
   },
 ];
