@@ -6,7 +6,7 @@ import { PagedDataType, ILegoTheme, ILegoThemesResponse } from '../../services/t
 import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
 
 interface IProps {
-  themeId: number;
+  themeId: number; // 0 for empty
   onSelect: (themeId: number) => void;
 }
 
@@ -18,9 +18,11 @@ export const ThemeAutoComplete = ({ themeId, onSelect }: IProps) => {
   const [selectedTheme, setSelectedTheme] = useState<ILegoTheme | null>(null);
   const [fullThemeList, setFullThemeList] = useState<ILegoTheme[]>([]);
   const [page, setPage] = useState(1);
+
   const apiUrl = useMemo(() => {
     return envConfig.apiUrl + API_URL_MAP.urls[EApiUrlKey.LEGO_THEMES]({ page, pageSize });
   }, [page, pageSize]);
+
   const { data, isSuccess, isLoading } = useQueryGet<PagedDataType<ILegoThemesResponse>>({
     url: apiUrl,
     enabled: page !== 0,
@@ -50,14 +52,21 @@ export const ThemeAutoComplete = ({ themeId, onSelect }: IProps) => {
 
   // set the user selection, use fullThemeList here to ensure object reference will be the same
   useEffect(() => {
-    if (apiUrl === '' && themeId > 0 && fullThemeList.length > 0) {
+    if (page === 0 && themeId > 0 && fullThemeList.length > 0) {
       const selected = fullThemeList.find((item) => item.id === themeId) ?? null;
       setSelectedTheme(selected);
     }
-  }, [apiUrl, themeId, fullThemeList]);
+  }, [page, themeId, fullThemeList]);
 
   const handleSelect = (ev: React.SyntheticEvent<Element, Event>, value: ILegoTheme | null) => {
-    onSelect(value ? value.id : 0);
+    if (value) {
+      const selected = fullThemeList.find((item) => item.id === value.id) || null;
+      setSelectedTheme(selected);
+      onSelect(value.id);
+    } else {
+      setSelectedTheme(null);
+      onSelect(0);
+    }
   };
 
   return (
@@ -67,9 +76,11 @@ export const ThemeAutoComplete = ({ themeId, onSelect }: IProps) => {
         getOptionLabel={(option) => option.name}
         value={selectedTheme}
         onChange={handleSelect}
-        loading={apiUrl !== ''}
+        loading={page !== 0}
         loadingText={'Loading...'}
-        isOptionEqualToValue={(option, value) => option.id === value.id}
+        isOptionEqualToValue={(option, value) => {
+          return option.id === value.id;
+        }}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -85,6 +96,7 @@ export const ThemeAutoComplete = ({ themeId, onSelect }: IProps) => {
                 </>
               ),
             }}
+            sx={{ borderRadius: 2 }}
           />
         )}
         renderOption={(props, option) => {
@@ -102,6 +114,7 @@ export const ThemeAutoComplete = ({ themeId, onSelect }: IProps) => {
             },
           },
         }}
+        sx={{ backgroundColor: 'white', borderRadius: 2 }}
       />
     </Box>
   );

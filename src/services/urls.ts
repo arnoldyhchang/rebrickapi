@@ -5,6 +5,7 @@ export enum EApiUrlKey {
   USER_PROFILE = 'userProfile',
   USER_BADGE = 'userBadge',
   LEGO_THEMES = 'legoThemes',
+  LEGO_SETS = 'legoSets',
 }
 
 export type ApiQueryParams = {
@@ -14,6 +15,7 @@ export type ApiQueryParams = {
   colorId?: number;
   userToken?: string;
   badgeId?: number;
+  themeId?: number;
 };
 
 interface IApiUrlMap {
@@ -30,5 +32,6 @@ export const API_URL_MAP: IApiUrlMap = {
     userProfile: ({ userToken }) => `/users/${userToken}/profile/`,
     userBadge: ({ badgeId }) => `/users/badges/${badgeId}/`,
     legoThemes: ({ page, pageSize }) => `/lego/themes/?page=${page}&page_size=${pageSize}`,
+    legoSets: ({ page, pageSize, themeId }) => `/lego/sets/?page=${page}&page_size=${pageSize}&theme_id=${themeId}`,
   },
 };
