@@ -85,3 +85,18 @@ export interface ILegoTheme {
 export interface ILegoThemesResponse {
   results: ILegoTheme[];
 }
+
+export interface ILegoSet {
+  set_num: string;
+  name: string;
+  year: number;
+  theme_id: number;
+  num_parts: number;
+  set_img_url: string;
+  set_url: string;
+  last_modified_dt: string;
+}
+
+export interface ILegoSetsResponse {
+  results: ILegoSet[];
+}
