@@ -132,6 +132,14 @@ export const LegoSets = () => {
         />
       )}
       <LegoSetList sets={data?.results || []} />
+      {data && themeId !== 0 && (
+        <ListPagination
+          currentPage={page}
+          totalCount={data.count}
+          pageSize={PAGE_SIZE}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };

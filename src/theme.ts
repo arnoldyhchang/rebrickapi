@@ -20,7 +20,7 @@ export const theme = createTheme({
     },
     text: {
       primary: '#000000',
-      secondary: '#ffffff',
+      secondary: '#666',
     },
     error: {
       main: red.A400,
