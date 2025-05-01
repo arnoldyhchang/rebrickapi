@@ -11,6 +11,7 @@ import { TopBar } from './components/TopBar';
 import { SideBar } from './components/SideBar';
 import { AppContentStyle } from './App.style';
 import { PageNotFound } from './pages/PageNotFound';
+import { DebugProvider } from './context/DebugContext';
 
 // create a client
 const queryClient = new QueryClient();
@@ -23,12 +24,14 @@ const App = () => {
         <BrowserRouter>
           <AuthContextProvider>
             <SideBar />
-            <Routes>
-              {AppRoutes.map((e) => {
-                return <Route path={e.path} key={e.path} element={e.element} />;
-              })}
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
+            <DebugProvider>
+              <Routes>
+                {AppRoutes.map((e) => {
+                  return <Route path={e.path} key={e.path} element={e.element} />;
+                })}
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </DebugProvider>
           </AuthContextProvider>
         </BrowserRouter>
       </div>

@@ -1,5 +1,6 @@
+/* eslint-disable  */
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress, Divider, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import { Clear, Search } from '@mui/icons-material';
 import { PageContentStyle } from '../../styles/global.style';
@@ -11,6 +12,7 @@ import { API_URL_MAP, EApiUrlKey } from '../../services/urls';
 import { ThemeAutoComplete } from '../../components/ThemeAutoComplete';
 import { LegoSetList } from '../../components/LegoSetList';
 import { ListPagination } from '../../components/ListPagination';
+import { EDebugAction, useDebugContext } from '../../context/DebugContext';
 
 const PAGE_SIZE = 20;
 
@@ -19,6 +21,7 @@ export const LegoSets = () => {
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState('');
   const debouncedSearchText = useDebounce(searchText, 800);
+  const debugDispatch = useDebugContext();
 
   const searchParams = new URLSearchParams();
   searchParams.append('ordering', 'year');
@@ -37,6 +40,13 @@ export const LegoSets = () => {
     refetchOnMount: false,
     enabled: themeId !== 0,
   });
+
+  useEffect(() => {
+    debugDispatch({ actionType: EDebugAction.PANEL_STATUS, payload: true });
+    if (data) {
+      debugDispatch({ actionType: EDebugAction.SET_INFO, payload: data.count + ' items found' });
+    }
+  }, [debugDispatch, data]);
 
   const handleThemeSelect = (selectedThemeId: number) => {
     setPage(1);
