@@ -24,7 +24,8 @@ export const LegoSets = () => {
   const debugDispatch = useDebugContext();
 
   const searchParams = new URLSearchParams();
-  searchParams.append('ordering', 'year');
+  // notes: added set_num in order to get stable results from backend
+  searchParams.append('ordering', 'year, set_num');
   if (debouncedSearchText) {
     searchParams.append('search', debouncedSearchText);
   }
