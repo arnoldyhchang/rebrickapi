@@ -1,3 +1,8 @@
+# React + TypeScript + Create React App
+
+My notes: An exercise to build a React app using the CreateReactApp starter template + useQuery for consuming a RESTful API/
+Rebrickable Public API: [https://rebrickable.com/api/v3](https://rebrickable.com/api/v3)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
